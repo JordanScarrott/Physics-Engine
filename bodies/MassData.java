@@ -12,10 +12,10 @@ public class MassData {
     public float invInertia;
 
     // Constructor
-    public MassData(float mass, float inertia) {
+    public MassData(float mass/*, float inertia*/) {
         this.mass = mass;
-        this.inertia = inertia;
         this.invMass = 1 / mass;
-        this.invInertia = 1 / inertia;
+        /*this.inertia = inertia;
+        this.invInertia = 1 / inertia;*/
     }
 }
