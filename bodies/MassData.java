@@ -18,4 +18,14 @@ public class MassData {
         /*this.inertia = inertia;
         this.invInertia = 1 / inertia;*/
     }
+
+    /**
+     *
+     * */
+    public void setSTATIC() {
+        this.mass = 0.0f;
+        this.invMass = 0.0f;
+        this.inertia = 0.0f;
+        this.invInertia = 0.0f;
+    }
 }

@@ -13,7 +13,8 @@ public class Body {
     public MassData massData;
     public MyVector location;
     public MyVector velocity;
-    public MyVector force;
+    public MyVector forces;
+    public float angularVelocity;
 //    private int gravityScale;
 
     // Constructor
@@ -23,15 +24,39 @@ public class Body {
         this.massData = massData;
         this.location = location;
         this.velocity = new MyVector();
-        this.force = new MyVector();
+        this.forces = new MyVector();
+        angularVelocity = 0.0f;
     }
     public Body(Shape shape, MaterialType materialType, MassData massData, MyVector location) {
-        this.shape = shape;
-        this.material = new Material(materialType);
-        this.massData = massData;
-        this.location = location;
-        this.velocity = new MyVector();
-        this.force = new MyVector();
+        this(shape, new Material(materialType), massData, location);
+    }
+
+    /**
+     * Apply a new Force to the Body represented by this instance
+     * @param force the forces to be applied
+     * */
+    public void applyForce(MyVector force) {
+        forces.add(force);
+    }
+
+    /**
+     * Apply an impulse to the Body represented by this instance
+     * @param impulse the impulse {@code MyVector} to be applied
+     * @param contactVector
+     * */
+    public void applyImpulse(MyVector impulse, MyVector contactVector) {
+        // v += invMass * impulse;
+        // angV += invInertia * CrossProd(contactVector, impulse);
+        velocity.add(impulse.mult(massData.invMass));
+//        angularVelocity += massData.invInertia * contactVector.cross(impulse);
+    }
+
+    /**
+     * Sets this Body to STATIC
+     * */
+    void SetStatic() {
+        this.material = new Material(MaterialType.STATIC);
+        this.massData.setSTATIC();
     }
 
     /**
