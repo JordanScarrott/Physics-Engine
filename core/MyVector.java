@@ -258,6 +258,18 @@ public class MyVector extends Vec2f {
     }
 
     /**
+     * Computes cross product of the myVector represented by this instance
+     * and the specified myVector.
+     *
+     * @param myVector the other myVector
+     * @return the cross product of the two vectors
+     * @throws NullPointerException if the specified {@code myVector} is null
+     * */
+    public final float cross(MyVector myVector) {
+        return this.x * myVector.y - this.y * myVector.x;
+    }
+
+    /**
      * Computes the angle (in degrees) between this MyVector and
      * the specified MyVector.
      *
